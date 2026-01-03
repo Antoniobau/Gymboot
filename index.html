@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GymBotMotiv - Bots que Crean Videos Motivacionales</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos Personalizados -->
+    <link rel="stylesheet" href="css/estilos-bots.css">
+</head>
+<body>
+    <!-- Barra de Navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">GymBotMotiv</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#bots">Nuestros Bots</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#crear">Crear Video</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ejemplos">Ejemplos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sección Principal -->
+    <header class="bg-primary text-white text-center py-5">
+        <div class="container">
+            <h1>Bots que Crean Videos Motivacionales de Gimnasio</h1>
+            <p class="lead mt-3">Descarga tus videos listos para compartir en redes sociales</p>
+        </div>
+    </header>
+
+    <!-- Sección de Bots -->
+    <section id="bots" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Elige tu Bot Creador</h2>
+            <div class="row g-4">
+                <!-- Bot FuerzaMaster -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="card bot-card h-100 text-center" data-bot="fuerza">
+                        <img src="img/bot-fuerza.png" class="card-img-top mx-auto mt-3" alt="FuerzaMaster" style="width: 150px;">
+                        <div class="card-body">
+                            <h5 class="card-title">FuerzaMaster</h5>
+                            <p class="card-text">Especializado en levantamiento de pesas y superación física.</p>
+                            <button class="btn btn-warning w-100 seleccionar-bot">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bot CardioEnergy -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="card bot-card h-100 text-center" data-bot="cardio">
+                        <img src="img/bot-cardio.png" class="card-img-top mx-auto mt-3" alt="CardioEnergy" style="width: 150px;">
+                        <div class="card-body">
+                            <h5 class="card-title">CardioEnergy</h5>
+                            <p class="card-text">Videos de cardio con ritmo energético y mensajes de resistencia.</p>
+                            <button class="btn btn-warning w-100 seleccionar-bot">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bot FuncionalPro -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="card bot-card h-100 text-center" data-bot="funcional">
+                        <img src="img/bot-funcional.png" class="card-img-top mx-auto mt-3" alt="FuncionalPro" style="width: 150px;">
+                        <div class="card-body">
+                            <h5 class="card-title">FuncionalPro</h5>
+                            <p class="card-text">Entrenamiento funcional con enfoque en rendimiento.</p>
+                            <button class="btn btn-warning w-100 seleccionar-bot">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bot PersonalizadoBot -->
+                <div class="col-md-3 col-sm-6">
+                    <div class="card bot-card h-100 text-center" data-bot="personalizado">
+                        <img src="img/bot-personalizado.png" class="card-img-top mx-auto mt-3" alt="PersonalizadoBot" style="width: 150px;">
+                        <div class="card-body">
+                            <h5 class="card-title">PersonalizadoBot</h5>
+                            <p class="card-text">Crea tu video con tus propias preferencias.</p>
+                            <button class="btn btn-warning w-100 seleccionar-bot">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Creación -->
+    <section id="crear" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Configura tu Video</h2>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card p-4">
+                        <h5 class="card-title">Opciones de Personalización</h5>
+                        <div id="opciones-bot" class="d-none">
+                            <!-- Campo para texto personalizado -->
+                            <div class="mb-3">
+                                <label for="texto-personalizado" class="form-label">Frase Motivacional (opcional)</label>
+                                <input type="text" class="form-control" id="texto-personalizado" placeholder="Ej: El esfuerzo vale la pena">
+                            </div>
+                            <!-- Botón para generar -->
+                            <button id="generar-video" class="btn btn-primary w-100">Generar Video con el Bot</button>
+                        </div>
+                        <p id="sin-bot-seleccionado" class="text-muted">Selecciona un bot primero para ver las opciones</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-4 text-center">
+                        <h5 class="card-title">Previsualización</h5>
+                        <div id="previsualizacion" class="d-none">
+                            <video id="video-preview" controls class="w-100 mb-3" style="max-height: 400px;"></video>
+                            <a id="enlace-descarga" class="btn btn-success w-100" download="video-motivacional-gym.mp4">Descargar Video</a>
+                        </div>
+                        <p id="sin-previsualizacion" class="text-muted">El video aparecerá aquí después de generarlo</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Ejemplos -->
+    <section id="ejemplos" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Ejemplos de Videos Creados</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <video controls class="w-100">
+                        <source src="videos/ejemplos/ejemplo-fuerza.mp4" type="video/mp4">
+                        Tu navegador no soporta videos MP4.
+                    </video>
+                    <p class="text-center mt-2">Creado por FuerzaMaster</p>
+                </div>
+                <div class="col-md-4">
+                    <video controls class="w-100">
+                        <source src="videos/ejemplos/ejemplo-cardio.mp4" type="video/mp4">
+                        Tu navegador no soporta videos MP4.
+                    </video>
+                    <p class="text-center mt-2">Creado por CardioEnergy</p>
+                </div>
+                <div class="col-md-4">
+                    <video controls class="w-100">
+                        <source src="videos/ejemplos/ejemplo-funcional.mp4" type="video/mp4">
+                        Tu navegador no soporta videos MP4.
+                    </video>
+                    <p class="text-center mt-2">Creado por FuncionalPro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pie de Página -->
+    <footer class="bg-dark text-white text-center py-3">
+        <div class="container">
+            <p>&copy; 2026 GymBotMotiv - Todos los recursos son de uso libre</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Lógica de Bots -->
+    <script src="js/logica-bots.js"></script>
+    <!-- Generador de Videos -->
+    <script src="js/generador-video.js"></script>
+</body>
+  </html>
+                                                                              
